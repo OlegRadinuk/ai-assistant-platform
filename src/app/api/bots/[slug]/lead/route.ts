@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { getClientBySlug, saveLead, getMessagesBySession } from "@/lib/db"
+import { TELEGRAM_API_BASE } from "@/lib/telegram"
 
 // Public widget endpoint — open CORS without credentials.
 // Dashboard routes do NOT get CORS headers (they rely on same-origin cookies).
@@ -28,7 +29,7 @@ function escapeHtml(s: string): string {
 
 async function sendTelegram(token: string, chatId: string, text: string) {
   try {
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    await fetch(`${TELEGRAM_API_BASE}/bot${token}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),

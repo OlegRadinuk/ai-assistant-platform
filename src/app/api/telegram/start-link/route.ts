@@ -13,6 +13,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { requireUserId } from "@/lib/auth"
 import { createTelegramStartToken } from "@/lib/db"
+import { TELEGRAM_API_BASE } from "@/lib/telegram"
 
 // Cache bot username for the process lifetime (avoids repeated getMe calls)
 let cachedBotUsername: string | null = null
@@ -24,7 +25,7 @@ async function getBotUsername(token: string): Promise<string | null> {
     return cachedBotUsername
   }
   try {
-    const res = await fetch(`https://api.telegram.org/bot${token}/getMe`, {
+    const res = await fetch(`${TELEGRAM_API_BASE}/bot${token}/getMe`, {
       signal: AbortSignal.timeout(5000),
     })
     if (!res.ok) return null

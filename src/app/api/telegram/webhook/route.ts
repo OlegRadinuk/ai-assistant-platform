@@ -15,6 +15,7 @@
 
 import { NextRequest, NextResponse } from "next/server"
 import { consumeTelegramStartToken, saveTelegramChatId, saveUserTelegramChatId } from "@/lib/db"
+import { TELEGRAM_API_BASE } from "@/lib/telegram"
 
 // Minimal shape of a Telegram Update we care about
 type TelegramUpdate = {
@@ -106,7 +107,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
 async function sendTelegramMessage(token: string, chatId: string, text: string): Promise<void> {
   try {
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    await fetch(`${TELEGRAM_API_BASE}/bot${token}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ chat_id: chatId, text }),

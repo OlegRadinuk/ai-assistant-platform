@@ -6,11 +6,12 @@ import { isSafeFetchUrl } from "@/lib/safe-url"
 import { resolveBaseURL } from "@/lib/ai-config"
 import { streamMockReply, streamPlainText } from "@/lib/mock-chat"
 import { TRIAL_EXPIRED_MESSAGE } from "@/lib/pricing"
+import { TELEGRAM_API_BASE } from "@/lib/telegram"
 
 // ── Telegram helper ────────────────────────────────────────────────────────────
 async function sendTelegram(token: string, chatId: string, text: string) {
   try {
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    await fetch(`${TELEGRAM_API_BASE}/bot${token}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),

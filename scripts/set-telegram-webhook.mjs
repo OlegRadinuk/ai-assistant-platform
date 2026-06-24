@@ -17,6 +17,8 @@
 const token         = process.env.TELEGRAM_BOT_TOKEN
 const baseUrl       = process.env.APP_BASE_URL
 const webhookSecret = process.env.TELEGRAM_WEBHOOK_SECRET
+// On RF hosting api.telegram.org is unreachable — route via proxy (same as app).
+const tgApiBase     = process.env.TELEGRAM_API_BASE || "https://api.telegram.org"
 
 if (!token)   { console.error("ERROR: TELEGRAM_BOT_TOKEN is not set"); process.exit(1) }
 if (!baseUrl) { console.error("ERROR: APP_BASE_URL is not set"); process.exit(1) }
@@ -32,7 +34,7 @@ if (webhookSecret) {
   Object.assign(payload, { secret_token: webhookSecret })
 }
 
-const res = await fetch(`https://api.telegram.org/bot${token}/setWebhook`, {
+const res = await fetch(`${tgApiBase}/bot${token}/setWebhook`, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(payload),
