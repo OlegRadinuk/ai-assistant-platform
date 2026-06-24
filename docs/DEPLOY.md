@@ -1,7 +1,7 @@
 # Деплой ai-assistant-platform — пошаговая инструкция для Олега
 
 > Приложение разворачивается как отдельный PM2-процесс на порту **3100** рядом с optisphere (порт 3000).
-> Поддомен: **app.optisphere.tech** — легко заменяется (3 места в nginx-конфиге, 1 в APP_BASE_URL).
+> Поддомен: **ai.optisphere.tech** — легко заменяется (3 места в nginx-конфиге, 1 в APP_BASE_URL).
 
 ---
 
@@ -35,7 +35,7 @@ certbot --version
 Дождись propagation (обычно 5–30 минут). Проверь:
 
 ```bash
-dig +short app.optisphere.tech
+dig +short ai.optisphere.tech
 # должен вернуть IP VPS
 ```
 
@@ -84,7 +84,7 @@ TELEGRAM_WEBHOOK_SECRET=<output of: openssl rand -hex 32>
 # DB_PATH=
 
 # Базовый URL — ОБЯЗАТЕЛЬНО установить точным поддоменом
-APP_BASE_URL=https://app.optisphere.tech
+APP_BASE_URL=https://ai.optisphere.tech
 
 # Демо-аккаунт (demo@example.com / demo1234) — ТОЛЬКО для тестирования
 # Убери или закомменти в реальном проде
@@ -156,11 +156,11 @@ pm2 save
 
 ```bash
 # Скопировать конфиг
-sudo cp /var/www/ai-assistant-platform/deploy/nginx-app.optisphere.tech.conf \
-        /etc/nginx/sites-available/app.optisphere.tech
+sudo cp /var/www/ai-assistant-platform/deploy/nginx-ai.optisphere.tech.conf \
+        /etc/nginx/sites-available/ai.optisphere.tech
 
 # Активировать
-sudo ln -s /etc/nginx/sites-available/app.optisphere.tech \
+sudo ln -s /etc/nginx/sites-available/ai.optisphere.tech \
            /etc/nginx/sites-enabled/
 
 # Проверить синтаксис
@@ -175,7 +175,7 @@ sudo systemctl reload nginx
 ## 7. SSL через Let's Encrypt
 
 ```bash
-sudo certbot --nginx -d app.optisphere.tech
+sudo certbot --nginx -d ai.optisphere.tech
 ```
 
 Certbot автоматически:
@@ -208,7 +208,7 @@ node scripts/set-telegram-webhook.mjs
 
 Ожидаемый вывод:
 ```
-Webhook set successfully: https://app.optisphere.tech/api/telegram/webhook
+Webhook set successfully: https://ai.optisphere.tech/api/telegram/webhook
 secret_token: configured
 Webhook was set
 ```
@@ -223,7 +223,7 @@ pm2 status
 # → ai-assistant-platform   online
 
 # 2. Сайт доступен
-curl -I https://app.optisphere.tech
+curl -I https://ai.optisphere.tech
 # → HTTP/2 200
 
 # 3. Логи — нет ERROR в первую минуту
@@ -235,9 +235,9 @@ curl -I https://optisphere.tech
 ```
 
 Открой в браузере:
-- `https://app.optisphere.tech` — главная/лендинг платформы
-- `https://app.optisphere.tech/login` — вход
-- `https://app.optisphere.tech/signup` — регистрация
+- `https://ai.optisphere.tech` — главная/лендинг платформы
+- `https://ai.optisphere.tech/login` — вход
+- `https://ai.optisphere.tech/signup` — регистрация
 
 Если включён демо-режим (`SEED_DEMO=1`): войди как `demo@example.com` / `demo1234`.
 
@@ -295,8 +295,8 @@ sudo chown deploy:deploy /var/backups/ai-assistant-platform
 
 ## Изменить поддомен
 
-Если нужен другой поддомен вместо `app.optisphere.tech`:
+Если нужен другой поддомен вместо `ai.optisphere.tech`:
 
-1. `deploy/nginx-app.optisphere.tech.conf` — переименовать файл и заменить `app.optisphere.tech` (3 вхождения в server_name и ssl_certificate путях)
+1. `deploy/nginx-ai.optisphere.tech.conf` — переименовать файл и заменить `ai.optisphere.tech` (3 вхождения в server_name и ssl_certificate путях)
 2. `.env.local` на сервере: `APP_BASE_URL=https://новый.домен`
 3. Перерегистрировать Telegram webhook (шаг 8)
