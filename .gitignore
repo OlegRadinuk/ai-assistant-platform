@@ -1,6 +1,22 @@
 node_modules/
 .next/
 .env
-.env.*
+.env.local
+.env.*.local
 .DS_Store
 Thumbs.db
+
+# SQLite database (committed: .gitkeep and seed.json only)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/*.tmp
+
+# Build / tooling artifacts
+*.tsbuildinfo
+next-env.d.ts
+.serena/
+
+# Internal working docs — not for public repo
+docs/BUILD_PLAN.md
+docs/PRE_DEPLOY_CHECKLIST.md

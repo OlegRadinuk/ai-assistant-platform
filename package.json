@@ -1,0 +1,38 @@
+{
+  "name": "ai-assistant-platform",
+  "version": "1.0.0",
+  "description": "**Multi-tenant платформа AI-ассистентов для бизнеса.** Один движок обслуживает множество клиентов: каждый ассистент настраивается без выката кода, встраивается на любой сайт одной строкой, ведёт диалог на Claude, захватывает заявки в Telegram и умеет записывать клиентов в их реальные системы (МИС/CRM).",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.105.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^26.0.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "better-sqlite3": "^12.11.1",
+    "framer-motion": "^12.40.0",
+    "next": "^16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "^6.0.3",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.1"
+  }
+}

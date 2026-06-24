@@ -1,0 +1,13 @@
+{
+  "note": "Demo data is seeded programmatically on first startup via src/lib/db.ts seedDemoData(). This file is a reference placeholder.",
+  "demoUser": {
+    "email": "demo@example.com",
+    "password": "demo1234"
+  },
+  "demoAssistant": {
+    "slug": "demo",
+    "name": "Клиника Ромашка",
+    "role": "admin",
+    "industry": "клиника"
+  }
+}
