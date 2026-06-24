@@ -72,7 +72,7 @@ export default function SignupPage() {
             Создайте аккаунт
           </h1>
           <p style={{ color: "var(--op-text-secondary)", marginBottom: 32, fontSize: 15 }}>
-            Бесплатно. Без кредитной карты. Ассистент — через 10 минут.
+            Бесплатный пробный период. Ассистент — через 10 минут.
           </p>
 
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -138,8 +138,7 @@ export default function SignupPage() {
                 aria-required="true"
               />
               <span style={{ fontSize: 13, color: "var(--op-text-secondary)", lineHeight: 1.5 }}>
-                Даю согласие Радинюку О.А. (самозанятый, ИНН 910401189210) на обработку
-                персональных данных в целях регистрации в соответствии с{" "}
+                Согласен на обработку персональных данных и принимаю{" "}
                 <a
                   href="/privacy"
                   target="_blank"
@@ -147,7 +146,7 @@ export default function SignupPage() {
                   style={{ color: "var(--op-accent)", textDecoration: "none" }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  Политикой конфиденциальности
+                  Политику конфиденциальности
                 </a>
               </span>
             </label>

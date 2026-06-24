@@ -49,7 +49,7 @@ export default function FinalCta() {
         </div>
 
         <p style={{ fontSize: 12, color: "var(--op-text-muted)", marginTop: 16 }}>
-          Без кредитной карты · После триала ассистент ждёт оплаты · Отмена в любой момент
+          Без оплаты на старте · После триала ассистент ждёт оплаты · Отмена в любой момент
         </p>
 
         {/* Widget install hint */}

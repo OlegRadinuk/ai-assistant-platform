@@ -183,7 +183,7 @@ export default function LandingHero() {
               </a>
             </div>
             <p style={{ fontSize: 11, color: "var(--op-text-muted)", marginTop: 10 }}>
-              7 дней бесплатно — без кредитной карты
+              7 дней бесплатно — без оплаты на старте
             </p>
           </motion.div>
 
