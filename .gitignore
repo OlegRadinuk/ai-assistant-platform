@@ -20,3 +20,4 @@ next-env.d.ts
 # Internal working docs — not for public repo
 docs/BUILD_PLAN.md
 docs/PRE_DEPLOY_CHECKLIST.md
+docs/SESSION-*.md
